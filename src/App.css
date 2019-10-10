@@ -20,3 +20,107 @@
 .App-link {
   color: #09d3ac;
 }
+
+body {
+  background-color: #282c34;
+}
+
+h1 {
+  color: #09d3ac;
+  display: flex;
+  justify-content: center;
+}
+
+.head-color {
+  color: #09d3ac;
+}
+
+legend {
+  color: #09D3FF;
+  font-weight: bold;
+}
+
+fieldset {
+  width: max-content;
+}
+
+.align-left {
+  float: left;
+}
+
+label {
+  color: #545454;
+  font-weight: bold;
+  display: block;
+  margin-top: 5px;
+}
+
+.w-270 {
+  width: 270px;
+}
+
+.w-310 {
+  width: 310px;
+}
+
+.w-700 {
+  width: 700px;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.m-10 {
+  margin: 10px;
+}
+
+.bg-coral {
+  background-color: coral;
+}
+
+.bg-lgreen {
+  background-color: lightgreen;
+}
+
+button {
+  font-weight: bold;
+}
+
+
+.accordion {
+  background-color: #eee;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+  transition: 0.4s;
+}
+
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  display: none;
+  background-color: white;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.2s ease-out;
+}
+
+button.accordion:after {
+  content: '\002B';
+  font-weight: bold;
+  float: right;
+  margin-left: 5px;
+}
+
+button.accordion.active:after {
+  content: "\2212";
+}
