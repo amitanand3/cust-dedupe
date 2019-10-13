@@ -32,31 +32,6 @@ const UserDetailsComp = (props) => {
                     </div>
                     </fieldset>
                 </form>
-                <form id="val-form" name="values">
-                    <fieldset>
-                    <legend>Values</legend>
-                    <div>
-                        <label>Threshold</label>
-                        <input name="threshold" type="number" className="w-310" placeholder="Default: 0.9" />
-                    </div>
-                    <div>
-                        <label>Max Search Hits</label>
-                        <input name="hits" type="number" className="w-310" placeholder="Default: 10" />
-                    </div>
-                    <div>
-                        <label>Min Relevance</label>
-                        <input name="minRel" type="number" className="w-310" placeholder="Default: 0.9" />
-                    </div>
-                    <div>
-                        <label>Fuzzy Search</label>
-                        <input name="fuzzy" type="text" className="w-310" placeholder="True/False (Default: True)" />
-                    </div>
-                    <div>
-                        <label>Path</label>
-                        <input name="path" type="text" className="w-310" placeholder="Default drive path for lucene index (/opt/flink/lucene)" />
-                    </div>
-                    </fieldset>
-                </form>
             </div>
       </div>
     );

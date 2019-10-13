@@ -4,7 +4,7 @@ import UserDetailsComp from './Property/UserDetailsComp';
 
 class App extends Component {
 
-  propList = ['First Name', 'Middle Name', 'Last Name', 'Date of Birth', 'Phone', 'Zipcode'];
+  propList = ['firstName', 'middleName', 'surName', 'dob', 'phone', 'zipcode'];
 
   toggleView = (event) => {
     event.currentTarget.classList.toggle("active");
@@ -26,6 +26,27 @@ class App extends Component {
     let xmlDoc = document.implementation.createDocument("", "", null);
     let rootElem = xmlDoc.createElement("duke");
     let schema = xmlDoc.createElement("schema");
+
+    let valForm = document.getElementById('val-form');
+    let threshold = xmlDoc.createElement("threshold");
+    threshold.innerHTML = valForm.elements['threshold'].value || "0.9";
+    schema.appendChild(threshold);
+
+    let hits = xmlDoc.createElement("max-search-hits");
+    hits.innerHTML = valForm.elements['hits'].value || "10";
+    schema.appendChild(hits);
+
+    let minRel = xmlDoc.createElement("min-relevance");
+    minRel.innerHTML = valForm.elements['minRel'].value || "0.9";
+    schema.appendChild(minRel);
+
+    let fuzzy = xmlDoc.createElement("fuzzy-search");
+    fuzzy.innerHTML = valForm.elements['fuzzy'].value || "true";
+    schema.appendChild(fuzzy);
+
+    let path = xmlDoc.createElement("path");
+    path.innerHTML = valForm.elements['path'].value || "/opt/flink/lucene";
+    schema.appendChild(path);
     
     this.propList.forEach((prop, index) => {
       let form = document.property[index];
@@ -73,7 +94,32 @@ class App extends Component {
             this.propList.map((value, index) => {
               return <UserDetailsComp key={index} toggle={(event) => this.toggleView(event)} propertyName={value} />
             })
-          }          
+          }
+          <form id="val-form" name="values">
+            <fieldset>
+              <legend>Values</legend>
+              <div>
+                  <label>Threshold</label>
+                  <input name="threshold" type="number" className="w-310" placeholder="Default: 0.9" />
+              </div>
+              <div>
+                  <label>Max Search Hits</label>
+                  <input name="hits" type="number" className="w-310" placeholder="Default: 10" />
+              </div>
+              <div>
+                  <label>Min Relevance</label>
+                  <input name="minRel" type="number" className="w-310" placeholder="Default: 0.9" />
+              </div>
+              <div>
+                  <label>Fuzzy Search</label>
+                  <input name="fuzzy" type="text" className="w-310" placeholder="True/False (Default: True)" />
+              </div>
+              <div>
+                  <label>Path</label>
+                  <input name="path" type="text" className="w-310" placeholder="Default drive path for lucene index: /opt/flink/lucene" />
+              </div>
+            </fieldset>
+          </form>
           <div className="center">
             <button className="m-10 bg-coral" onClick={()=>this.resetForm()}>RESET</button>
             <button className="m-10 bg-lgreen" onClick={()=>this.createXML()}>SUBMIT</button>
