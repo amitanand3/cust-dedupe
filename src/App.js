@@ -31,22 +31,6 @@ class App extends Component {
     let threshold = xmlDoc.createElement("threshold");
     threshold.innerHTML = valForm.elements['threshold'].value || "0.9";
     schema.appendChild(threshold);
-
-    let hits = xmlDoc.createElement("max-search-hits");
-    hits.innerHTML = valForm.elements['hits'].value || "10";
-    schema.appendChild(hits);
-
-    let minRel = xmlDoc.createElement("min-relevance");
-    minRel.innerHTML = valForm.elements['minRel'].value || "0.9";
-    schema.appendChild(minRel);
-
-    let fuzzy = xmlDoc.createElement("fuzzy-search");
-    fuzzy.innerHTML = valForm.elements['fuzzy'].value || "true";
-    schema.appendChild(fuzzy);
-
-    let path = xmlDoc.createElement("path");
-    path.innerHTML = valForm.elements['path'].value || "/opt/flink/lucene";
-    schema.appendChild(path);
     
     this.propList.forEach((prop, index) => {
       let form = document.property[index];
@@ -70,6 +54,34 @@ class App extends Component {
       schema.appendChild(property);
     });
 
+    let dbTag = xmlDoc.createElement("database");
+    dbTag.setAttribute("class", "no.priv.garshol.duke.databases.LuceneDatabase");
+    
+    let param = xmlDoc.createElement("param");
+    param.setAttribute("name", "path");
+    let path = valForm.elements['path'].value || "/opt/flink/lucene";
+    param.setAttribute("value", path);
+    dbTag.appendChild(param);
+
+    param = xmlDoc.createElement("param");
+    param.setAttribute("name", "max-search-hits");
+    let hits = valForm.elements['hits'].value || "10";
+    param.setAttribute("value", hits);
+    dbTag.appendChild(param);
+
+    param = xmlDoc.createElement("param");
+    param.setAttribute("name", "min-relevance");
+    let minRel = valForm.elements['minRel'].value || "0.9";
+    param.setAttribute("value", minRel);
+    dbTag.appendChild(param);
+
+    param = xmlDoc.createElement("param");
+    param.setAttribute("name", "fuzzy-search");
+    let fuzzy = valForm.elements['fuzzy'].value || "true";
+    param.setAttribute("value", fuzzy);
+    dbTag.appendChild(param);
+
+    schema.appendChild(dbTag);
     rootElem.appendChild(schema);
     xmlDoc.appendChild(rootElem);
 
