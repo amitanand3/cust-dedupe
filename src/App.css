@@ -1,20 +1,12 @@
-body {
-  background-color: #282c34;
-}
-
-h1 {
-  color: #09d3ac;
-  display: flex;
-  justify-content: center;
-}
-
-.head-color {
-  color: #09d3ac;
+h2 {
+  font-weight: 400;
 }
 
 legend {
-  color: maroon;
-  font-weight: bold;
+  color: darkturquoise;
+  text-align: center;
+  font-weight: 400;
+  margin-bottom: 0;
 }
 
 fieldset {
@@ -25,8 +17,12 @@ fieldset {
   float: left;
 }
 
+.inline-block {
+  display: inline-block;
+}
+
 label {
-  color: #545454;
+  color: cornsilk;
   font-weight: bold;
   display: block;
   margin-top: 5px;
@@ -36,12 +32,20 @@ label {
   width: 270px;
 }
 
+.w-195 {
+  width: 195px;
+}
+
 .w-310 {
   width: 310px;
 }
 
-.w-700 {
-  width: 700px;
+.w-550 {
+  width: 550px;
+}
+
+.p-15 {
+  padding: 0 15px 5px;
 }
 
 .center {
@@ -52,52 +56,232 @@ label {
 .m-10 {
   margin: 10px;
 }
-
-.bg-coral {
-  background-color: coral;
+.m-l-20 {
+  margin-left: 20px;
 }
 
-.bg-lgreen {
-  background-color: lightgreen;
+.abs {
+  position: absolute;
 }
 
-button {
-  font-weight: bold;
-}
-
-
-.accordion {
-  background-color: #eee;
-  cursor: pointer;
-  padding: 18px;
-  width: 100%;
+.button1 {
+  background-color: #4CAF50; /* Green */
   border: none;
-  text-align: left;
-  outline: none;
-  font-size: 15px;
-  transition: 0.4s;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
 }
 
-.active, .accordion:hover {
-  background-color: #769ede; 
+.button1:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #4CAF50;
+}
+
+.button2 {
+  background-color: #E75F2D; 
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button2:hover {
+  background-color: white; 
+  color: black; 
+  border: 2px solid #E75F2D;
+}
+
+
+
+body {
+  margin: 0;
+  font-family: 'Roboto';
+  font-size: 14px;
+  /* background: #455A64; */
+  background-image: url("./assets/images/hive1.jpg");
+}
+
+h3 {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+  margin-top: 30px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.container {
+  max-width: 600px;
+}
+
+div[class*='col-'] {
+  padding: 0 30px;
+}
+
+.wrap {
+  box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+a:focus,
+a:hover,
+a:active {
+  outline: 0;
+  text-decoration: none;
 }
 
 .panel {
-  padding: 0 18px;
-  display: none;
-  background-color: #ccd7ff;
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height 0.2s ease-out;
+  border-width: 0 0 1px 0;
+  border-style: solid;
+  border-color: #fff;
+  background: none;
+  box-shadow: none;
 }
 
-button.accordion:after {
-  content: '\002B';
-  font-weight: bold;
-  float: right;
-  margin-left: 5px;
+.panel:last-child {
+  border-bottom: none;
 }
 
-button.accordion.active:after {
-  content: "\2212";
+.panel-group > .panel:first-child .panel-heading {
+  border-radius: 4px 4px 0 0;
+}
+
+.panel-group .panel {
+  border-radius: 0;
+}
+
+.panel-group .panel + .panel {
+  margin-top: 0;
+}
+
+.panel-heading {
+  background-color: #009688;
+  border-radius: 0;
+  border: none;
+  color: #fff;
+  padding: 0;
+}
+
+.panel-title a {
+  display: block;
+  color: #fff;
+  padding: 15px;
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.panel-body {
+  background: transparent;
+}
+
+.panel:last-child .panel-body {
+  border-radius: 0 0 4px 4px;
+}
+
+.panel:last-child .panel-heading {
+  border-radius: 0 0 4px 4px;
+  transition: border-radius 0.3s linear 0.2s;
+}
+
+.panel:last-child .panel-heading.active {
+  border-radius: 0;
+  transition: border-radius linear 0s;
+}
+/* #bs-collapse icon scale option */
+
+.panel-heading a:before {
+  content: '\e146';
+  position: absolute;
+  font-family: 'Material Icons';
+  right: 5px;
+  top: 10px;
+  font-size: 24px;
+  transition: all 0.5s;
+  transform: scale(1);
+}
+
+.panel-heading.active a:before {
+  content: ' ';
+  transition: all 0.5s;
+  transform: scale(0);
+}
+
+#bs-collapse .panel-heading a:after {
+  content: ' ';
+  font-size: 24px;
+  position: absolute;
+  font-family: 'Material Icons';
+  right: 5px;
+  top: 10px;
+  transform: scale(0);
+  transition: all 0.5s;
+}
+
+#bs-collapse .panel-heading.active a:after {
+  content: '\e909';
+  transform: scale(1);
+  transition: all 0.5s;
+}
+/* #accordion rotate icon option */
+
+#accordion .panel-heading a:before {
+  content: '\e316';
+  font-size: 24px;
+  position: absolute;
+  font-family: 'Material Icons';
+  right: 5px;
+  top: 10px;
+  transform: rotate(180deg);
+  transition: all 0.5s;
+}
+
+#accordion .panel-heading.active a:before {
+  transform: rotate(0deg);
+  transition: all 0.5s;
+}
+
+.m-l--10 {
+  margin-left: -10px;
+}
+
+.m-l-160 {
+  margin-left: 160px;
+}
+
+.m-t-40 {
+  margin-top: 40px;
+}
+
+.m-t-10 {
+  margin-top: 10px;
+}
+
+.m-l-15 {
+  margin-left: 15px;
+}
+
+.box {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.w-170 {
+  width: 170px;
 }

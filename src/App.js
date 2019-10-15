@@ -6,19 +6,10 @@ class App extends Component {
 
   propList = ['firstName', 'middleName', 'surName', 'dob', 'phone', 'zipcode'];
 
-  toggleView = (event) => {
-    event.currentTarget.classList.toggle("active");
-    let panel = event.currentTarget.nextElementSibling;
-    
-    if (panel.style.display === "block") {
-      panel.style.display = "none";
-    } else {
-      panel.style.display = "block";
-    }
-  }
-
   resetForm = () => {
-    document.getElementById("prop-form").reset();
+    document.getElementsByName("property").forEach((form) => {
+      form.reset();
+    });
     document.getElementById("val-form").reset();
   }
 
@@ -77,7 +68,7 @@ class App extends Component {
 
     param = xmlDoc.createElement("param");
     param.setAttribute("name", "fuzzy-search");
-    let fuzzy = valForm.elements['fuzzy'].value || "true";
+    let fuzzy = valForm.elements['fuzzy'].checked;
     param.setAttribute("value", fuzzy);
     dbTag.appendChild(param);
 
@@ -96,45 +87,54 @@ class App extends Component {
   render() {
     return (
       <div className="center">
-        <fieldset className="w-700">
-          <legend>
-            <h1>
-              <u>Customer Master Deduplication Portal</u>
-            </h1>
+        <fieldset className="w-550">
+          <legend align="center">
+              <h2>Customer Master Deduplication Portal</h2>
           </legend>
-          {
-            this.propList.map((value, index) => {
-              return <UserDetailsComp key={index} toggle={(event) => this.toggleView(event)} propertyName={value} />
-            })
-          }
-          <form id="val-form" name="values">
+          <div className="m-t-10">
+          <div className="inline-block w-170 m-l--10">
+            <div className="container">
+              <div className="col-md-6 col-sm-6">
+                <div className="panel-group wrap" id="accordion" role="tablist" aria-multiselectable="true">
+                  {
+                    this.propList.map((value, index) => {
+                      return <UserDetailsComp key={index} toggle={(event) => this.toggleView(event)} propertyName={value} />
+                    })
+                  }
+                </div>
+              </div>
+            </div>
+          </div>
+          <form id="val-form" name="values" className="inline-block abs m-l-160 box">
             <fieldset>
               <legend>Values</legend>
+              <div className="p-15">
               <div>
                   <label>Threshold</label>
-                  <input name="threshold" type="number" className="w-310" placeholder="Default: 0.9" />
+                  <input name="threshold" type="number" className="w-170" placeholder="Default: 0.9" />
               </div>
               <div>
                   <label>Max Search Hits</label>
-                  <input name="hits" type="number" className="w-310" placeholder="Default: 10" />
+                  <input name="hits" type="number" className="w-170" placeholder="Default: 10" />
               </div>
               <div>
                   <label>Min Relevance</label>
-                  <input name="minRel" type="number" className="w-310" placeholder="Default: 0.9" />
+                  <input name="minRel" type="number" className="w-170" placeholder="Default: 0.9" />
               </div>
               <div>
-                  <label>Fuzzy Search</label>
-                  <input name="fuzzy" type="text" className="w-310" placeholder="True/False (Default: True)" />
+                  <label><input name="fuzzy" type="checkbox" />   Fuzzy Search</label>
               </div>
               <div>
                   <label>Path</label>
-                  <input name="path" type="text" className="w-310" placeholder="Default drive path for lucene index: /opt/flink/lucene" />
+                  <input name="path" type="text" className="w-170" placeholder="Drive path for lucene index" />
+              </div>
               </div>
             </fieldset>
           </form>
+          </div>
           <div className="center">
-            <button className="m-10 bg-coral" onClick={()=>this.resetForm()}>RESET</button>
-            <button className="m-10 bg-lgreen" onClick={()=>this.createXML()}>SUBMIT</button>
+            <button className="button2" onClick={()=>this.resetForm()}>RESET</button>
+            <button className="m-l-15 button1" onClick={()=>this.createXML()}>SUBMIT</button>
           </div>
         </fieldset>
       </div>
