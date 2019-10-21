@@ -80,8 +80,19 @@ class App extends Component {
     let xmlSerializer = new XMLSerializer();
     let xmlString = xmlSerializer.serializeToString(xmlDoc);
     console.log(xmlString);
-    let tempTab = window.open("");
-    tempTab.document.write('<textarea style="border:none; -webkit-box-sizing: border-box; -moz-box-sizing: border-box;         box-sizing: border-box; width:100%; height:100%">'+xmlString+'</textarea>');
+    this.sendXML(xmlString);
+  }
+
+  sendXML = (xml) => {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("POST", "/savexml");
+    xhttp.onreadystatechange = () => {
+      if (xhttp.readyState === 4 && xhttp.status === 200) {
+        console.log('SUCCESS: ', xhttp.response);
+      }
+    };
+    xhttp.setRequestHeader("Content-Type", "application/json");
+    xhttp.send(JSON.stringify({xml}));
   }
   
   render() {
